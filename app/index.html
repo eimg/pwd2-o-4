@@ -5,9 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
 </head>
 <body>
+    <div class="navbar bg-primary navbar-dark navbar-expand">
+        <div class="container">
+            <a href="#" class="navbar-brand">App</a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <div class="container">
+
+        <ul class="nav nav-tabs my-4">
+            <li class="nav-item">
+                <a href="#" class="nav-link active">
+                    Users
+                    <span class="badge bg-danger ms-2 rounded-pill">10</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Issues</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown">Settings</a>
+                <div class="dropdown-menu">
+                    <a href="#" class="dropdown-item">Themes</a>
+                    <a href="#" class="dropdown-item">Profile</a>
+                </div>
+            </li>
+        </ul>
+
         <div class="alert alert-info">
             primary, secondary, info, success, warning, danger, dark
         </div>
