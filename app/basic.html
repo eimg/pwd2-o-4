@@ -4,32 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        .container {
-            display: flex;
-            gap: 10px;
-            /* flex-direction: row|column; */
-            align-items: center;
-            /* flex-start, flex-end */
-            justify-content: center;
-            /* space-between, space-around */
-            margin: auto;
-            width: 1000px;
-            height: 500px;
-            background: silver;
-        }
-        .box {
-            width: 200px;
-            height: 200px;
-            background: deeppink;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-    </div>
+    <script>
+        let nums = [1, 2, 3, 4, 5];
+        let result = nums.filter(n => n % 2 != 0);
+    </script>
 </body>
 </html>
