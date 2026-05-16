@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+</head>
+<body>
+    <input type="text">
+    <button>Add</button>
+    <ul id="todo"></ul>
+
+    <script>
+        document.querySelector("button").onclick = () => {
+            let text = document.querySelector("input").value;
+            if(text == "") return false;
+
+            createItem(text);
+
+            document.querySelector("input").value = "";
+            document.querySelector("input").focus();
+        }
+
+        document.querySelector("input").onkeydown = e => {
+            if(e.key == "Enter") {
+                document.querySelector("button").onclick();
+            }
+        }
+
+        function createItem(text) {
+            let li = document.createElement("li");
+            li.textContent = text;
+
+            document.querySelector("#todo").appendChild(li);
+        }
+    </script>
+</body>
+</html>
