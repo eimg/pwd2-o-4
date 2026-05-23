@@ -1,0 +1,19 @@
+{
+	"scripts": {
+		"build": "npx babel src -d js",
+		"dev": "npx webpack serve --open --hot"
+	},
+	"dependencies": {
+		"bootstrap": "^5.3.8"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.28.6",
+		"@babel/core": "^7.29.0",
+		"@babel/preset-react": "^7.28.5",
+		"babel-loader": "^10.1.1",
+		"http-server": "^14.1.1",
+		"webpack": "^5.106.2",
+		"webpack-cli": "^7.0.2",
+		"webpack-dev-server": "^5.2.4"
+	}
+}
