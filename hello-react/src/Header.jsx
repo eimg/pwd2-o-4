@@ -1,3 +1,17 @@
+import { AppBar, Toolbar, Typography, Badge } from "@mui/material";
+
 export default function Header({ count }) {
-    return <h1>Todo ({count})</h1>;
+	return (
+		<AppBar position="static">
+			<Toolbar>
+				<Typography>
+					<Badge
+						badgeContent={count}
+						color="error">
+						Todo
+					</Badge>
+				</Typography>
+			</Toolbar>
+		</AppBar>
+	);
 }
