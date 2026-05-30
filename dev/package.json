@@ -4,7 +4,10 @@
 		"dev": "npx webpack serve --open --hot"
 	},
 	"dependencies": {
-		"bootstrap": "^5.3.8"
+		"@faker-js/faker": "^10.4.0",
+		"bcrypt": "^6.0.0",
+		"bootstrap": "^5.3.8",
+		"jsonwebtoken": "^9.0.3"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.28.6",
