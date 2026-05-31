@@ -6,6 +6,7 @@
 	"dependencies": {
 		"@faker-js/faker": "^10.4.0",
 		"bcrypt": "^6.0.0",
+		"better-sqlite3": "^12.10.0",
 		"bootstrap": "^5.3.8",
 		"jsonwebtoken": "^9.0.3"
 	},
