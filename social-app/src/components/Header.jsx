@@ -12,7 +12,7 @@ export default function Header() {
 	const { mode, setMode, setOpenDrawer } = useApp();
 
 	return (
-		<AppBar>
+		<AppBar position="static">
 			<Toolbar>
 				<IconButton
 					color="inherit"

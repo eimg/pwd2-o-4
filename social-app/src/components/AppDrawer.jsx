@@ -9,8 +9,12 @@ import {
 } from "@mui/icons-material";
 import { useApp } from "../AppProvider";
 
+import { useNavigate } from "react-router";
+
 export default function AppDrawer() {
 	const { openDrawer, setOpenDrawer } = useApp();
+
+    const navigate = useNavigate();
 
 	return (
 		<Drawer
@@ -21,7 +25,7 @@ export default function AppDrawer() {
 
 			<List>
 				<ListItem>
-					<ListItemButton>
+					<ListItemButton onClick={() => navigate("/")}>
 						<ListItemIcon>
 							<HomeIcon />
 						</ListItemIcon>
@@ -34,7 +38,7 @@ export default function AppDrawer() {
 
 			<List>
 				<ListItem>
-					<ListItemButton>
+					<ListItemButton onClick={() => navigate("/login")}>
 						<ListItemIcon>
 							<LoginIcon />
 						</ListItemIcon>
@@ -42,7 +46,7 @@ export default function AppDrawer() {
 					</ListItemButton>
 				</ListItem>
 				<ListItem>
-					<ListItemButton>
+					<ListItemButton onClick={() => navigate("/register")}>
 						<ListItemIcon>
 							<RegisterIcon />
 						</ListItemIcon>
@@ -53,7 +57,7 @@ export default function AppDrawer() {
 
 			<List>
 				<ListItem>
-					<ListItemButton>
+					<ListItemButton onClick={() => navigate("/profile")}>
 						<ListItemIcon>
 							<ProfileIcon />
 						</ListItemIcon>
@@ -61,7 +65,7 @@ export default function AppDrawer() {
 					</ListItemButton>
 				</ListItem>
 				<ListItem>
-					<ListItemButton>
+					<ListItemButton onClick={() => navigate("/")}>
 						<ListItemIcon>
 							<LogoutIcon />
 						</ListItemIcon>
