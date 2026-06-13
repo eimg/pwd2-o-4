@@ -14,6 +14,7 @@ const AppContext = createContext();
 export default function AppProvider() {
 	const [mode, setMode] = useState("dark");
 	const [openDrawer, setOpenDrawer] = useState(false);
+    const [auth, setAuth] = useState();
 
 	const theme = useMemo(() => {
 		return createTheme({
@@ -25,7 +26,7 @@ export default function AppProvider() {
 
 	return (
 		<AppContext.Provider
-			value={{ mode, setMode, openDrawer, setOpenDrawer }}>
+			value={{ mode, setMode, openDrawer, setOpenDrawer, auth, setAuth }}>
 			<ThemeProvider theme={theme}>
 				<AppRouter />
 				<CssBaseline />
