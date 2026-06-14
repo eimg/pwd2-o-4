@@ -3,6 +3,8 @@ import { prisma } from "../lib/prisma";
 
 export const router = express.Router();
 
+import { auth } from "../middlewares/auth";
+
 router.get("/posts", async (req, res) => {
     const posts = await prisma.post.findMany({
         orderBy: { id: "desc" },
@@ -14,6 +16,24 @@ router.get("/posts", async (req, res) => {
     });
 
     res.json(posts);
+});
+
+router.post("/posts", auth, async (req, res) => {
+    const id = res.locals.user.id;
+
+    const content = req.body?.content;
+    if(!content) {
+        return res.status(400).json({ msg: "content is required" });
+    }
+
+    const post = await prisma.post.create({
+        data: {
+            content,
+            userId: id
+        }
+    });
+
+    res.status(201).json(post);
 });
 
 router.get("/posts/:id", async (req, res) => {
