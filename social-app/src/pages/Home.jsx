@@ -53,6 +53,36 @@ export default function Home() {
         }
     }
 
+    const deletePost = async id => {
+        const token = localStorage.getItem("token");
+
+        const res = await fetch(`http://localhost:8800/posts/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (res.ok) {
+            await queryClient.invalidateQueries({ queryKey: ["posts"] });
+        }
+    };
+
+    const toggleLike = async (id, liked) => {
+        const token = localStorage.getItem("token");
+
+        const res = await fetch(`http://localhost:8800/posts/${id}/likes`, {
+            method: liked ? "DELETE" : "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (res.ok) {
+            await queryClient.invalidateQueries({ queryKey: ["posts"] });
+        }
+    };
+
 	return (
 		<Box>
 			<Box sx={{ mb: 2 }}>
@@ -81,6 +111,8 @@ export default function Home() {
 					<PostCard
 						key={post.id}
 						post={post}
+                        onDelete={deletePost}
+                        onToggleLike={toggleLike}
 					/>
 				);
 			})}

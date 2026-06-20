@@ -13,13 +13,20 @@ import { green } from "@mui/material/colors";
 
 import {
 	FavoriteBorder as LikeIcon,
+	Favorite as LikedIcon,
 	ChatBubbleOutlineOutlined as CommentIcon,
+	Delete as DeleteIcon,
 } from "@mui/icons-material";
 
 import { useNavigate } from "react-router";
+import { useApp } from "../AppProvider";
 
-export default function PostCard({ post }) {
+export default function PostCard({ post, onDelete, onToggleLike }) {
 	const navigate = useNavigate();
+	const { auth } = useApp();
+	const canDelete = auth?.id === post.userId;
+	const liked = post.likes?.some(like => like.userId === auth?.id);
+	const likeCount = post.likes ? post.likes.length : 0;
 
 	return (
 		<Card sx={{ mb: 2 }}>
@@ -37,7 +44,9 @@ export default function PostCard({ post }) {
 						</Avatar>
 					</Box>
 					<Box>
-						<Typography sx={{ fontWeight: "bold" }}>
+						<Typography
+							sx={{ fontWeight: "bold", cursor: "pointer" }}
+							onClick={() => navigate(`/profile/${post.userId}`)}>
 							{post.user.name}
 						</Typography>
 						<Typography
@@ -50,6 +59,16 @@ export default function PostCard({ post }) {
 							{post.content}
 						</Typography>
 					</Box>
+					{canDelete && onDelete && (
+						<Box sx={{ ml: "auto" }}>
+							<IconButton
+								aria-label="delete post"
+								color="error"
+								onClick={() => onDelete(post.id)}>
+								<DeleteIcon />
+							</IconButton>
+						</Box>
+					)}
 				</Box>
 				<Box
 					sx={{
@@ -58,13 +77,20 @@ export default function PostCard({ post }) {
 						justifyContent: "space-around",
 					}}>
 					<ButtonGroup>
-						<IconButton size="sm">
-							<LikeIcon color="error" />
+						<IconButton
+							size="sm"
+							disabled={!auth || !onToggleLike}
+							onClick={() => onToggleLike(post.id, liked)}>
+							{liked ? (
+								<LikedIcon color="error" />
+							) : (
+								<LikeIcon color="error" />
+							)}
 						</IconButton>
 						<Button
 							size="sm"
 							variant="text">
-							10
+							{likeCount}
 						</Button>
 					</ButtonGroup>
 					<ButtonGroup>
