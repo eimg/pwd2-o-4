@@ -1,17 +1,61 @@
-import { Link } from "expo-router";
-import { View, Text } from "react-native";
+import { ScrollView, View, Text } from "react-native";
+
+import PostCard from "@/components/post-card";
+import { PostType } from "@/types/global";
+import { useQuery } from "@tanstack/react-query";
+
+async function fetchPosts(): Promise<PostType[]> {
+    // change localhost to your ip address
+	const res = await fetch("http://localhost:8800/posts");
+	return res.json();
+}
 
 export default function Home() {
-	return (
-		<View
-			style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-			<Text style={{ fontWeight: "bold", fontSize: 21 }}>
-				Hello React Native
-			</Text>
+	const {
+		data: posts,
+		isLoading,
+		error,
+	} = useQuery({
+		queryKey: ["posts"],
+		queryFn: fetchPosts,
+	});
 
-            <View style={{ marginTop: 20 }}>
-                <Link href={"/profile"}>Profile</Link>
-            </View>
-		</View>
+	if (error) {
+		return (
+			<View
+				style={{
+					flex: 1,
+					justifyContent: "center",
+					alignItems: "center",
+				}}>
+				<Text>{error.message}</Text>
+			</View>
+		);
+	}
+
+	if (isLoading) {
+		return (
+			<View
+				style={{
+					flex: 1,
+					justifyContent: "center",
+					alignItems: "center",
+				}}>
+				<Text>Loading...</Text>
+			</View>
+		);
+	}
+
+	return (
+		<ScrollView>
+			{posts?.map(post => {
+				return (
+					<PostCard
+						key={post.id}
+						post={post}
+					/>
+				);
+			})}
+		</ScrollView>
 	);
 }
