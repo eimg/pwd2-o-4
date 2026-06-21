@@ -11,9 +11,11 @@ import { PostType } from "@/types/global";
 import { useQuery } from "@tanstack/react-query";
 import { useLocalSearchParams } from "expo-router";
 
+import { api } from "@/libs/api";
+
 async function fetchPost(id: string): Promise<PostType> {
 	// change localhost to your ip address
-	const res = await fetch(`http://localhost:8800/posts/${id}`);
+	const res = await fetch(`${api()}/${id}`);
 	return res.json();
 }
 

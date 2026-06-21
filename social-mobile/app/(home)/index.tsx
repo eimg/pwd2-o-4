@@ -4,9 +4,10 @@ import PostCard from "@/components/post-card";
 import { PostType } from "@/types/global";
 import { useQuery } from "@tanstack/react-query";
 
+import { api } from "@/libs/api";
+
 async function fetchPosts(): Promise<PostType[]> {
-    // change localhost to your ip address
-	const res = await fetch("http://localhost:8800/posts");
+	const res = await fetch(`${api()}/posts`);
 	return res.json();
 }
 
