@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { PostType } from "@/types/global";
+import { router } from "expo-router";
 
 export default function PostCard({ post }: { post: PostType }) {
 	return (
@@ -30,9 +31,12 @@ export default function PostCard({ post }: { post: PostType }) {
 						{post.user.name}
 					</Text>
 					<Text style={{ color: "teal" }}>{post.created}</Text>
-					<Text style={{ marginTop: 5, fontSize: 15 }}>
-						{post.content}
-					</Text>
+					<TouchableOpacity
+						onPress={() => router.push(`/view/${post.id}`)}>
+						<Text style={{ marginTop: 5, fontSize: 15 }}>
+							{post.content}
+						</Text>
+					</TouchableOpacity>
 				</View>
 			</View>
 			<View

@@ -7,7 +7,11 @@ export default function RootLayout() {
 			<Stack>
 				<Stack.Screen
 					name="(home)"
-					options={{ headerShown: false }}
+					options={{ headerShown: false, title: "Home" }}
+				/>
+				<Stack.Screen
+					name="view/[id]"
+					options={{ title: "View Post" }}
 				/>
 			</Stack>
 		</AppProvider>
