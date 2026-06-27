@@ -7,7 +7,11 @@ import {
 	createContext,
 	useState,
 	useContext,
+    useEffect,
 } from "react";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { api } from "@/libs/api";
 
 export const queryClient = new QueryClient();
 
@@ -20,6 +24,25 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export default function AppProvider({ children }: { children: ReactNode }) {
 	const [auth, setAuth] = useState<UserType | undefined>();
+
+    useEffect(() => {
+        (async () => {
+            const token = await AsyncStorage.getItem("token");
+            if(token) {
+                const res = await fetch(`${api()}/verify`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                if(res.ok) {
+                    setAuth(await res.json());
+                } else {
+                    await AsyncStorage.removeItem("token");
+                }
+            }
+        })();
+    }, []);
 
 	return (
 		<AuthContext.Provider value={{ auth, setAuth }}>

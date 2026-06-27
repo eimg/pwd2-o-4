@@ -4,6 +4,8 @@ import { useApp } from "@/components/app-provider";
 import { router } from "expo-router";
 import { api } from "@/libs/api";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 export default function Profile() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -26,6 +28,7 @@ export default function Profile() {
 		if (res.ok) {
 			const { user, token } = await res.json();
 			setAuth(user);
+            await AsyncStorage.setItem("token", token);
 			router.push("/");
 		} else {
 			alert("Unable to login");
@@ -50,7 +53,7 @@ export default function Profile() {
 						}}>
 						{auth?.name}
 					</Text>
-					<Text style={{ textAlign: "center" }}>@{username}</Text>
+					<Text style={{ textAlign: "center" }}>@{auth.username}</Text>
 					<TouchableOpacity
 						onPress={logout}
 						style={{

@@ -15,7 +15,7 @@ import { api } from "@/libs/api";
 
 async function fetchPost(id: string): Promise<PostType> {
 	// change localhost to your ip address
-	const res = await fetch(`${api()}/${id}`);
+	const res = await fetch(`${api()}/posts/${id}`);
 	return res.json();
 }
 
