@@ -1,11 +1,11 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { prisma } from "../lib/prisma";
+import { prisma } from "../lib/prisma.js";
 
 export const router = express.Router();
 
-import { auth } from "../middlewares/auth";
+import { auth } from "../middlewares/auth.js";
 
 router.get("/verify", auth, async (req, res) => {
 	const id = res.locals.user.id as number;

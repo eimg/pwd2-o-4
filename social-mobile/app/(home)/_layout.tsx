@@ -7,7 +7,28 @@ export default function HomeLayout() {
 	const { auth } = useApp();
 
 	return (
-		<Tabs>
+		<Tabs
+			screenOptions={{
+				headerShadowVisible: false,
+				headerStyle: { backgroundColor: "#f8fafc" },
+				headerTitleStyle: {
+					fontSize: 24,
+					fontWeight: "800",
+					color: "#111827",
+				},
+				tabBarActiveTintColor: "#2563eb",
+				tabBarInactiveTintColor: "#94a3b8",
+				tabBarStyle: {
+					backgroundColor: "#ffffff",
+					borderTopColor: "#e5e7eb",
+					height: 82,
+					paddingTop: 8,
+				},
+				tabBarLabelStyle: {
+					fontSize: 12,
+					fontWeight: "600",
+				},
+			}}>
 			<Tabs.Screen
 				name="index"
 				options={{
@@ -24,11 +45,20 @@ export default function HomeLayout() {
 					headerRight: () => {
 						return auth ? (
 							<TouchableOpacity
-								style={{ marginRight: 15 }}
+								style={{
+									width: 38,
+									height: 38,
+									marginRight: 16,
+									borderRadius: 19,
+									backgroundColor: "#2563eb",
+									alignItems: "center",
+									justifyContent: "center",
+								}}
 								onPress={() => router.push("/form")}>
 								<Ionicons
 									name="add"
 									size={24}
+									color="#ffffff"
 								/>
 							</TouchableOpacity>
 						) : (

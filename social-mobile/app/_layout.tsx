@@ -4,7 +4,17 @@ import { Stack } from "expo-router";
 export default function RootLayout() {
 	return (
 		<AppProvider>
-			<Stack>
+			<Stack
+				screenOptions={{
+					contentStyle: { backgroundColor: "#f8fafc" },
+					headerShadowVisible: false,
+					headerStyle: { backgroundColor: "#f8fafc" },
+					headerTintColor: "#111827",
+					headerTitleStyle: {
+						fontSize: 17,
+						fontWeight: "700",
+					},
+				}}>
 				<Stack.Screen
 					name="(home)"
 					options={{ headerShown: false, title: "Home" }}

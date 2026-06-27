@@ -1,9 +1,9 @@
 import express from "express";
-import { prisma } from "../lib/prisma";
+import { prisma } from "../lib/prisma.js";
 
 export const router = express.Router();
 
-import { auth } from "../middlewares/auth";
+import { auth } from "../middlewares/auth.js";
 
 router.get("/posts", async (req, res) => {
     const posts = await prisma.post.findMany({

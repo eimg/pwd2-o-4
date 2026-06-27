@@ -3,7 +3,7 @@ import { api } from "@/libs/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { useState } from "react";
-import { View, TextInput, TouchableOpacity, Text } from "react-native";
+import { ScrollView, TextInput, TouchableOpacity, Text } from "react-native";
 
 export default function Form() {
 	const [content, setContent] = useState("");
@@ -31,30 +31,40 @@ export default function Form() {
 	};
 
 	return (
-		<View style={{ padding: 15, gap: 5 }}>
+		<ScrollView
+			contentInsetAdjustmentBehavior="automatic"
+			style={{ backgroundColor: "#f8fafc" }}
+			contentContainerStyle={{ padding: 12, gap: 10 }}>
 			<TextInput
 				value={content}
 				onChangeText={setContent}
+				multiline
 				style={{
 					fontSize: 15,
-					padding: 15,
-					backgroundColor: "white",
+					minHeight: 160,
+					padding: 14,
+					color: "#111827",
+					backgroundColor: "#ffffff",
 					borderWidth: 1,
-					borderColor: "#66666666",
-					borderRadius: 20,
+					borderColor: "#e5e7eb",
+					borderRadius: 8,
+					textAlignVertical: "top",
 				}}
-				placeholder="Your reply..."
+				placeholder="What's happening?"
+				placeholderTextColor="#94a3b8"
 			/>
 			<TouchableOpacity
                 onPress={add}
 				style={{
-					backgroundColor: "teal",
-					padding: 15,
-					borderRadius: 20,
+					backgroundColor: "#2563eb",
+					paddingVertical: 14,
+					borderRadius: 8,
 					alignItems: "center",
 				}}>
-				<Text style={{ color: "white" }}>Add Post</Text>
+				<Text style={{ color: "#ffffff", fontWeight: "700" }}>
+					Add Post
+				</Text>
 			</TouchableOpacity>
-		</View>
+		</ScrollView>
 	);
 }
