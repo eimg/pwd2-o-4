@@ -13,6 +13,10 @@ export default function RootLayout() {
 					name="view/[id]"
 					options={{ title: "View Post" }}
 				/>
+				<Stack.Screen
+					name="form"
+					options={{ title: "New Post", presentation: "modal" }}
+				/>
 			</Stack>
 		</AppProvider>
 	);
